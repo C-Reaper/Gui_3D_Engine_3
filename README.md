@@ -1,193 +1,86 @@
-# Gui_3D_Engine_3
+# Project README
 
+## Overview
+This project is a 3D GUI engine written in C. It supports building for Linux, Windows (using Wine), WebAssembly (emscripten), and includes debug options.
 
-## Project Overview
+## Features
+- Basic GUI components
+- Support for custom shaders
+- Input handling
+- Cross-platform compilation via makefiles
 
-This project implements specialized functionality related to 3d_engine_3.
-
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for 3d_engine_3
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
+## Project Structure
+```
+Gui_3D_Engine/
+├── build/              # .exe files produced by Main.c
+├── libs/               # *.c for bin
+├── lib/                # librarys for my own languages
+├── code/               # scripts from my custom languages for example .rex, .ll, .omml
+├── data/               # Datafile for example .txt or dumped files
+├── assets/             # images and sound files
+├── src/                # src code
+│   ├── Main.c          # Entry point
+│   └── *.h             # stand alone Header-based C-files, without *.c files that implement it
+├── Makefile.linux      # Linux Build configuration
+├── Makefile.windows    # Windows Build configuration
+├── Makefile.wine       # Wine Build configuration for cross-compiling to windows on linux
+└── README.md           # This file
+└── LICENSE
+└── .gitignore
+```
 
 ### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
+- C/C++ Compiler and Debugger (GCC, Clang)
 - Make utility
 - Standard development tools
+- Libraries needed in specific projects:
+  - Linux: `X11`, `png`, `jpeg`
+  - Windows: `user32`, `gdi32`, `winmm` (using Wine for cross-compilation to windows on linux)
 
-### Build Steps
+## Build & Run
 
-1. Navigate to project directory:
-```bash
-cd Gui_3D_Engine_3
+### Building the Project
+To build the project, navigate to the project directory and run the appropriate makefile:
+
+```sh
+cd Gui_3D_Engine/
+make -f Makefile.linux all    # For Linux
+make -f Makefile.windows all  # For Windows (using Wine)
+make -f Makefile.wine all     # For cross-compiling to windows on linux
+make -f Makefile.web all      # For WebAssembly with emscripten
 ```
 
-2. Build the project:
-```bash
-make -f Makefile.(os) all
+### Clean and Rebuild
+To clean the build artifacts and rebuild:
+
+```sh
+make -f Makefile.linux clean  # Remove build artifacts for Linux
+make -f Makefile.windows clean # Remove build artifacts for Windows (using Wine)
+make -f Makefile.wine clean  # Remove build artifacts for cross-compiling to windows on linux
+make -f Makefile.web clean    # Remove build artifacts for WebAssembly with emscripten
 ```
 
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
+### Running the Executable
+After building, run the executable using make:
+
+```sh
+make -f Makefile.linux exe      # For Linux
+make -f Makefile.windows exe   # For Windows (using Wine)
+make -f Makefile.wine exe     # For cross-compiling to windows on linux (use WINE to run the .exe)
 ```
 
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
+### Debugging
+For debugging, use:
+
+```sh
+make -f Makefile.linux debug      # For Linux
+make -f Makefile.windows debug   # For Windows (using Wine) - requires winebuild and winedbg
+make -f Makefile.wine debug     # For cross-compiling to windows on linux - requires WINE
 ```
 
 ### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
-```
+- `all`: Build output.
+- `do`: Build + executable output.
+- `clean`: Remove build artifacts.
 
-## Running the Project
-
-Execute the compiled binary:
-
-```bash
-./build/Main(.exe)
-```
-
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
-
-## Project Organization
-
-```
-Gui_3D_Engine_3/
-├── src/
-│   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
-└── README.md           # This file
-```
-
-## Technical Details
-
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
-
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
-
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
-
-## Development Notes
-
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
-
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
-
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
-
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+These steps ensure a structured and reproducible build process for the 3D GUI engine.
